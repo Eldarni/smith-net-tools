@@ -1,0 +1,129 @@
+
+
+
+@mixin headings {
+    h1, h2, h3, h4, h5, h6 {
+        @content;
+    }
+}
+
+//define some basic colours
+$black     : #000000;
+$white     : #ffffff;
+
+$primary   : #cf101a;
+$secondary : #333333;
+
+
+//------------------------------------------------------------------------------
+
+//include a reset file
+@import 'reset';
+
+//mixins
+@import 'mixins/position';
+
+//------------------------------------------------------------------------------
+
+//import the font hosted via google fonts
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,500|Roboto:400,400i,700,700i|Source+Code+Pro');
+
+//define some mixins to make use of this easy
+@mixin font-heading($size: false, $colour: false, $weight: false) {
+    font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+    @if $size   { font-size: $size;     }    
+    @if $colour { color: $colour;       }      
+    @if $weight { font-weight: $weight; }
+}
+
+@mixin font-general($size: false, $colour: false, $weight: false) {
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    @if $size   { font-size: $size;     }
+    @if $colour { color: $colour;       }
+    @if $weight { font-weight: $weight; }
+}
+
+@mixin font-monospace($size: false, $colour: false, $weight: false) {
+    font-family: 'Source Code Pro', Helvetica, Arial, sans-serif;
+    @if $size   { font-size: $size;     }
+    @if $colour { color: $colour;       }
+    @if $weight { font-weight: $weight; }
+}
+
+//------------------------------------------------------------------------------
+
+body { 
+    @include font-general($size: 16px);
+    line-height: 150%;
+}
+
+@include headings() {
+	@include font-heading();
+    line-height: 120%;
+}
+
+//style the main header and the main "content"
+header {
+    padding: 1em;
+    border-bottom: 0.2em solid $primary;
+    margin-bottom: 1.5em;
+
+    .site-title { 
+    	@include font-heading($size: 1.9em, $colour: $primary, $weight: 300); 
+   	}
+}
+
+main { 
+	padding: 0em 1em;
+}
+
+/* basic text styles */
+a, a:visited { font-weight: bold; color: $primary; text-decoration: none; }
+a:hover { color: lighten($primary, 20%); }
+
+/* basic table styles */
+table { background-color: darken($white, 1%); width: 100%; }
+table th, table td { padding: 0.5em; border-bottom: 1px dotted darken($white, 10%); vertical-align: top; }
+table th:not(:first-child), table td:not(:first-child) { border-left: 1px dotted darken($white, 10%); }
+thead th { font-weight: bold; border-bottom: 2px solid $primary; }
+
+//basic button style
+.btn {
+    border: none;
+    color: darken($white, 50%);
+    background: darken($white, 10%);
+    border-radius: 2px;
+    padding: 0.4em 1em;
+
+    &:hover {
+        background: darken($white, 20%);  
+    }
+}
+
+//------------------------------------------------------------------------------
+
+.pastebox { 
+
+	display: flex; min-height: 80vh; 
+
+	.markup, .preview { overflow-x: scroll; overflow-y: hidden; padding: 1em; border: 1px solid #CCCCCC; border-radius: 3px; flex-basis: 960px; user-select: text; }
+
+	.markup { 
+        @include relative();
+		@include font-monospace($size: 12px);
+		background: #FEFEFE; white-space: pre-line; flex-grow: 1;
+    }
+
+	.preview { margin-left: 1em; flex-basis: 960px; }
+
+	.preview > *:first-child { margin-top: 0em; }
+
+	.preview tr:first-child td { font-weight: bold; border-bottom: 2px solid $primary; }
+
+    button {
+        @include absolute(top 0.5em right 0.5em);
+    }
+
+}
+
+//------------------------------------------------------------------------------

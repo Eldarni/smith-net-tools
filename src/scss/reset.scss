@@ -1,0 +1,14 @@
+html, body { margin: 0; border: 0; user-select: none; }
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+//make everything unselectable, as most of the stuff i do is "apps"
+body { user-select: none; }
+
+//reverse the previous decision for general "content"
+h1, h2, h3, h4, h5, h6, p, table, ul, ol, dl { user-select: text; }
+
+//
+button { cursor: pointer; }
