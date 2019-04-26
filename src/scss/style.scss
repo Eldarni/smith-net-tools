@@ -77,6 +77,14 @@ main {
 	padding: 0em 1em;
 }
 
+
+footer {
+    padding: 1em 5em;
+    text-align: right;
+    @include font-heading($size: 0.8em, $weight: 300);
+    a { @include font-heading($weight: 300); }
+}
+
 /* basic text styles */
 a, a:visited { font-weight: bold; color: $primary; text-decoration: none; }
 a:hover { color: lighten($primary, 20%); }
