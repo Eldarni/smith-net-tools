@@ -119,7 +119,7 @@ thead th { font-weight: bold; border-bottom: 2px solid $primary; }
 	.markup { 
         @include relative();
 		@include font-monospace($size: 12px);
-		background: #FEFEFE; white-space: pre-line; flex-grow: 1;
+		background: #FEFEFE; white-space: pre-wrap; flex-grow: 1;
     }
 
 	.preview { margin-left: 1em; flex-basis: 960px; }
