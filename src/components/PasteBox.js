@@ -159,7 +159,6 @@ const PasteBox = (props) => {
         <div className="pastebox" onPaste={props.onPaste}>
             
             <div className="markup">
-                <button className="btn btn-primary" onClick={copyToClipboard}>Copy</button>
                 <div>{pasteString}</div>
             </div>
             <div className="preview" dangerouslySetInnerHTML={{ __html: pasteString }}></div>
